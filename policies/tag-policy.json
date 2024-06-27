@@ -1,0 +1,51 @@
+{
+    "tags": {
+      "dept": {
+        "tag_key": {
+          "@@assign": "dept"
+        },
+        "enforced_for": {
+          "@@assign": [
+              "ec2:instance"
+          ]
+        }
+      },
+      "cost": {
+        "tag_key": {
+          "@@assign": "cost"
+        },
+        "tag_value": {
+          "@@assign": [
+            "001",
+            "002",
+            "003"
+          ]
+        },
+        "enforced_for": {
+          "@@assign": [
+              "ec2:instance"
+          ]
+        }
+      },
+      "proj": {
+        "tag_key": {
+          "@@assign": "proj"
+        },
+        "enforced_for": {
+          "@@assign": [
+              "ec2:instance"
+          ]
+        }
+      },
+      "Name": {
+        "tag_key": {
+          "@@assign": "Name"
+        },
+        "enforced_for": {
+          "@@assign": [
+              "ec2:instance"
+          ]
+        }
+      }
+    }
+  }

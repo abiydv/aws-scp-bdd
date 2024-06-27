@@ -1,0 +1,52 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "EnforceTagDept",			
+			"Effect": "Deny",
+			"Action": ["ec2:RunInstances"],
+			"Resource": ["arn:aws:ec2:*:*:instance/*"],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/dept": "true"
+				}
+			}
+		},
+		{
+			"Sid": "EnforceTagCostCenter",
+			"Effect": "Deny",
+			"Action": ["ec2:RunInstances"],
+			"Resource": ["arn:aws:ec2:*:*:instance/*"],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/cost": "true"
+				}
+			}
+		},
+		{
+			"Sid": "EnforceTagProj",
+			"Effect": "Deny",
+			"Action": ["ec2:RunInstances"],
+			"Resource": ["arn:aws:ec2:*:*:instance/*"],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/proj": "true"
+				}
+			}
+		},
+		{
+			"Sid": "NoPublicIpUnlessExempt",
+			"Effect": "Deny",
+			"Action": "ec2:RunInstances",
+			"Resource": "arn:aws:ec2:*:*:network-interface/*",
+			"Condition": {
+			  "StringNotEqualsIfExists": {
+				"aws:RequestTag/exempt": ["public-ip-control"]
+			  },
+			  "Bool": {
+				"ec2:AssociatePublicIpAddress": "true"
+			  }
+			}
+		}
+	]
+}
